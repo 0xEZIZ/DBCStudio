@@ -1,0 +1,234 @@
+{
+  "version": "1.0",
+  "description": "",
+  "messages": [
+    {
+      "message_id": 256,
+      "name": "EngineData",
+      "dlc": 8,
+      "sender": "ECU1",
+      "signals": [
+        {
+          "name": "EngineSpeed",
+          "start_bit": 0,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.25,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 16383.75,
+          "unit": "rpm",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": "Engine rotational speed in RPM"
+        },
+        {
+          "name": "EngineTemp",
+          "start_bit": 16,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": -40.0,
+          "minimum": -40.0,
+          "maximum": 215.0,
+          "unit": "degC",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": "Engine coolant temperature"
+        },
+        {
+          "name": "ThrottlePos",
+          "start_bit": 24,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.392157,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "unit": "%",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": ""
+        },
+        {
+          "name": "EngineRunning",
+          "start_bit": 32,
+          "length": 1,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": ""
+        }
+      ],
+      "comment": "Engine sensor data from ECU1"
+    },
+    {
+      "message_id": 512,
+      "name": "TransmissionData",
+      "dlc": 8,
+      "sender": "ECU1",
+      "signals": [
+        {
+          "name": "GearPosition",
+          "start_bit": 0,
+          "length": 4,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 8.0,
+          "unit": "",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": ""
+        },
+        {
+          "name": "VehicleSpeed",
+          "start_bit": 8,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.01,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 655.35,
+          "unit": "km/h",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": "Vehicle speed in km/h"
+        },
+        {
+          "name": "TransTemp",
+          "start_bit": 24,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": -40.0,
+          "minimum": -40.0,
+          "maximum": 215.0,
+          "unit": "degC",
+          "receivers": [
+            "ECU2"
+          ],
+          "comment": ""
+        }
+      ],
+      "comment": "Transmission and vehicle speed data"
+    },
+    {
+      "message_id": 768,
+      "name": "BrakeData",
+      "dlc": 4,
+      "sender": "ECU2",
+      "signals": [
+        {
+          "name": "BrakePressure",
+          "start_bit": 0,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.1,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 6553.5,
+          "unit": "bar",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": ""
+        },
+        {
+          "name": "BrakeActive",
+          "start_bit": 16,
+          "length": 1,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "",
+          "receivers": [
+            "ECU1"
+          ],
+          "comment": ""
+        },
+        {
+          "name": "ABSActive",
+          "start_bit": 17,
+          "length": 1,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1.0,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "unit": "",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": ""
+        }
+      ],
+      "comment": "Brake system data"
+    },
+    {
+      "message_id": 1024,
+      "name": "SteeringData",
+      "dlc": 8,
+      "sender": "ECU2",
+      "signals": [
+        {
+          "name": "SteeringAngle",
+          "start_bit": 0,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "signed",
+          "scale": 0.1,
+          "offset": 0.0,
+          "minimum": -3276.8,
+          "maximum": 3276.7,
+          "unit": "deg",
+          "receivers": [
+            "Dashboard"
+          ],
+          "comment": "Steering wheel angle - negative is left"
+        },
+        {
+          "name": "SteeringSpeed",
+          "start_bit": 16,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 4.0,
+          "offset": 0.0,
+          "minimum": 0.0,
+          "maximum": 1016.0,
+          "unit": "deg/s",
+          "receivers": [
+            "ECU1"
+          ],
+          "comment": ""
+        }
+      ],
+      "comment": "Steering system data"
+    }
+  ]
+}

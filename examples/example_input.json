@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "description": "Example CAN database for testing",
+  "messages": [
+    {
+      "message_id": 256,
+      "name": "EngineData",
+      "dlc": 8,
+      "sender": "ECU1",
+      "comment": "Engine sensor data",
+      "signals": [
+        {
+          "name": "EngineSpeed",
+          "start_bit": 0,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.25,
+          "offset": 0,
+          "minimum": 0,
+          "maximum": 16383.75,
+          "unit": "rpm",
+          "comment": "Engine rotational speed"
+        },
+        {
+          "name": "EngineTemp",
+          "start_bit": 16,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 1,
+          "offset": -40,
+          "minimum": -40,
+          "maximum": 215,
+          "unit": "degC",
+          "comment": "Coolant temperature"
+        },
+        {
+          "name": "ThrottlePosition",
+          "start_bit": 24,
+          "length": 8,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.392157,
+          "offset": 0,
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "message_id": 512,
+      "name": "VehicleStatus",
+      "dlc": 8,
+      "sender": "ECU2",
+      "signals": [
+        {
+          "name": "VehicleSpeed",
+          "start_bit": 0,
+          "length": 16,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.01,
+          "offset": 0,
+          "minimum": 0,
+          "maximum": 655.35,
+          "unit": "km/h"
+        },
+        {
+          "name": "Odometer",
+          "start_bit": 16,
+          "length": 24,
+          "byte_order": "little_endian",
+          "value_type": "unsigned",
+          "scale": 0.1,
+          "offset": 0,
+          "minimum": 0,
+          "maximum": 1677721.5,
+          "unit": "km"
+        }
+      ]
+    }
+  ]
+}

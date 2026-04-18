@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python main.py parse examples/example.dbc)",
+      "Bash(PYTHONIOENCODING=utf-8 python main.py parse examples/example.dbc)",
+      "Bash(PYTHONIOENCODING=utf-8 python main.py generate examples/example_input.json --output examples/generated_output.dbc)",
+      "Bash(PYTHONIOENCODING=utf-8 python main.py parse examples/example.dbc --json examples/exported.json)",
+      "Bash(PYTHONIOENCODING=utf-8 python main.py analyze examples/example_candump.txt --summary)",
+      "Bash(PYTHONIOENCODING=utf-8 python main.py --help)",
+      "Bash(pip install:*)",
+      "Bash(python -c \"import main; print\\('main.py OK'\\)\")",
+      "Bash(python -c \"from ui.main_window import MainWindow; print\\('MainWindow OK'\\)\")",
+      "Bash(python -m pip install PyQt5)",
+      "Bash(pip list:*)",
+      "Bash(python -m pip list)",
+      "Bash(D:/CAN_DBC generator/venv/Scripts/pip.exe install:*)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/pip.exe\" list)",
+      "Bash(D:/CAN_DBC generator/venv/Scripts/python.exe:*)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py --help)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py info examples/example.dbc)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py parse examples/example.dbc)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py convert examples/example.dbc --json /tmp/test_conv.json)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" -c \"import json; d=json.load\\(open\\('/tmp/test_conv.json'\\)\\); print\\(f'Converted: {len\\(d[\\\\\"messages\\\\\"]\\)} messages'\\)\")",
+      "Bash(python:*)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py analyze examples/example_candump.txt --summary)",
+      "Bash(\"D:/CAN_DBC generator/venv/Scripts/python.exe\" main.py generate examples/example_input.json --output /tmp/test_gen.dbc)",
+      "Bash('D:/CAN_DBC generator/venv/Scripts/python.exe' -c ':*)"
+    ]
+  }
+}
