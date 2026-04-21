@@ -86,6 +86,7 @@ class REScoutPanel(QWidget):
         self.action_data = defaultdict(list)
         self.recording_mode = "idle"
         self.active_id = None
+        self._status_state = "idle"  # idle, baseline, action, analyzing, complete
         
         self._init_ui()
 
@@ -197,14 +198,17 @@ class REScoutPanel(QWidget):
     def _update_status_lbl(self):
         prefix = I18N.t("scout_status")
         if self.recording_mode == "baseline":
+            self._status_state = "baseline"
             text = f"{prefix} {I18N.t('scout_rec_baseline')}"
         elif self.recording_mode == "action":
+            self._status_state = "action"
             text = f"{prefix} {I18N.t('scout_rec_action')}"
-        elif "⌛" in self.status_lbl.text():
-             text = f"{prefix} {I18N.t('scout_analyzing')}"
-        elif "✨" in self.status_lbl.text():
-             text = f"{prefix} {I18N.t('scout_complete')}"
+        elif self._status_state == "analyzing":
+            text = f"{prefix} ⌛ {I18N.t('scout_analyzing')}"
+        elif self._status_state == "complete":
+            text = f"{prefix} ✨ {I18N.t('scout_complete')}"
         else:
+            self._status_state = "idle"
             text = f"{prefix} {I18N.t('scout_idle')}"
         self.status_lbl.setText(text)
 
@@ -250,12 +254,14 @@ class REScoutPanel(QWidget):
             self.recording_mode = "idle"
             self.btn_action.setText(I18N.t("scout_btn_action"))
             self.btn_action.setStyleSheet("")
-            self.status_lbl.setText(f"{I18N.t('scout_status')} {I18N.t('scout_analyzing')}")
+            self._status_state = "analyzing"
+            self._update_status_lbl()
             self.analyze_requested.emit(dict(self.baseline_data), dict(self.action_data))
 
     def show_results(self, all_results: dict):
         self.res_list.clear()
-        self.status_lbl.setText(f"{I18N.t('scout_status')} ✨ {I18N.t('scout_complete')}")
+        self._status_state = "complete"
+        self._update_status_lbl()
         
         if not all_results:
             self.res_list.addItem(I18N.t("scout_no_diff"))
@@ -327,6 +333,7 @@ class REScoutPanel(QWidget):
         self.baseline_data.clear()
         self.action_data.clear()
         self.recording_mode = "idle"
+        self._status_state = "idle"
         self.res_list.clear()
         self.detail_lbl.setText(I18N.t("scout_detail"))
         self.heatmap.set_data([0]*64)

@@ -52,7 +52,7 @@ class LogConsole(QWidget):
         
         self.btn_clear = QPushButton(I18N.t("console_clear"))
         self.btn_clear.setFixedWidth(80)
-        self.btn_clear.clicked.connect(self.log_view.clear if hasattr(self, 'log_view') else lambda: None)
+        self.btn_clear.clicked.connect(lambda: self.log_view.clear() if hasattr(self, 'log_view') else None)
         header.addWidget(self.btn_clear)
         layout.addLayout(header)
 

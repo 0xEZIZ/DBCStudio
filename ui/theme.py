@@ -9,25 +9,25 @@ Light/Dark theme, clean typography, professional styling.
 
 COLORS_LIGHT = {
     "bg_primary": "#FFFFFF",
-    "bg_secondary": "#F8F9FA",
-    "bg_tertiary": "#F0F1F3",
-    "bg_panel": "#FFFFFF",
+    "bg_secondary": "#F3F4F6", # Main app background
+    "bg_tertiary": "#F9FAFB",
+    "bg_panel": "#FFFFFF",     # Cards and SideNav
     "bg_input": "#FFFFFF",
-    "bg_hover": "#E8F0FE",
-    "bg_selected": "#D2E3FC",
-    "bg_accent": "#1A73E8",
+    "bg_hover": "#F3F4F6",
+    "bg_selected": "#DBEAFE",  # Tailwind Blue 100
+    "bg_accent": "#2563EB",    # Tailwind Blue 600
 
-    "text_primary": "#202124",
-    "text_secondary": "#5F6368",
-    "text_tertiary": "#9AA0A6",
+    "text_primary": "#111827",
+    "text_secondary": "#4B5563",
+    "text_tertiary": "#9CA3AF",
     "text_on_accent": "#FFFFFF",
-    "text_link": "#1A73E8",
+    "text_link": "#2563EB",
 
-    "border": "#DADCE0",
-    "border_focus": "#1A73E8",
-    "border_light": "#E8EAED",
+    "border": "#E5E7EB",
+    "border_focus": "#3B82F6",
+    "border_light": "#F3F4F6",
 
-    "success": "#34A853",
+    "success": "#10B981",
     "warning": "#FBBC04",
     "error": "#EA4335",
     "info": "#4285F4",
@@ -194,22 +194,19 @@ def get_stylesheet(dark: bool = False) -> str:
 
     /* ── Side Navigation ── */
     #SideNav {{
-        background-color: {c['bg_secondary']};
+        background-color: {c['bg_panel']};
         border-right: 1px solid {c['border']};
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 110px;
+        max-width: 110px;
     }}
 
     #SideNav QPushButton {{
         background-color: transparent;
         border: none;
         border-radius: 8px;
-        margin: 6px 8px;
-        padding: 10px 4px;
-        color: {c['text_tertiary']};
-        font-size: 10px;
-        font-weight: 600;
-        text-align: center;
+        margin: 4px 10px;
+        padding: 8px 4px;
+        color: {c['text_secondary']};
     }}
 
     #SideNav QPushButton:hover {{
@@ -218,13 +215,15 @@ def get_stylesheet(dark: bool = False) -> str:
     }}
 
     #SideNav QPushButton[active="true"] {{
-        background-color: {c['bg_accent']};
-        color: {c['text_on_accent']};
+        background-color: {c['bg_selected']};
+        color: {c['bg_accent']};
     }}
 
-    #SideNav .NavLabel {{
-        margin-top: 4px;
-        font-size: 9px;
+    #SideNav QLabel {{
+        background: transparent;
+        border: none;
+        padding: 0px;
+        margin: 0px;
     }}
 
     /* ── Workspace Card ── */
@@ -235,15 +234,22 @@ def get_stylesheet(dark: bool = False) -> str:
     .Card {{
         background-color: {c['bg_panel']};
         border: 1px solid {c['border']};
-        border-radius: 12px;
+        border-radius: 6px;
     }}
 
     #CardHeader {{
-        padding: 8px 16px;
-        border-bottom: 1px solid {c['border']};
-        background-color: {c['bg_tertiary']};
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid {c['border_light']};
+        background-color: transparent;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }}
+
+    #CardContent {{
+        border: none;
+        border-bottom-left-radius: 11px;
+        border-bottom-right-radius: 11px;
+        background: transparent;
     }}
 
     .CardTitle {{
@@ -505,15 +511,15 @@ def get_stylesheet(dark: bool = False) -> str:
 
     /* ── Splitter ── */
     QSplitter::handle {{
-        background-color: {c['border']};
+        background-color: transparent;
     }}
 
     QSplitter::handle:horizontal {{
-        width: 2px;
+        width: 12px;
     }}
 
     QSplitter::handle:vertical {{
-        height: 2px;
+        height: 12px;
     }}
 
     /* ── Label ── */

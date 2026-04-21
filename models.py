@@ -219,23 +219,6 @@ class Signal:
         self.attributes = attributes or {}              # {name: value}
         self.is_float = is_float
 
-    @property
-    def is_multiplexer(self) -> bool:
-        return self.multiplex_indicator == "M"
-
-    @property
-    def is_multiplexed(self) -> bool:
-        return self.multiplex_indicator.startswith("m") and self.multiplex_indicator != "M"
-
-    @property
-    def mux_value(self) -> Optional[int]:
-        if self.is_multiplexed:
-            try:
-                return int(self.multiplex_indicator[1:])
-            except ValueError:
-                return None
-        return None
-
     def to_dict(self) -> dict:
         """Signal-y dictionary görnüşine öwürýär."""
         d = {

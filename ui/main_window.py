@@ -15,10 +15,10 @@ from PyQt5.QtWidgets import (
     QInputDialog, QSplitter, QStatusBar, QApplication, QTableWidget,
     QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog,
     QDialogButtonBox, QTextEdit, QStackedWidget, QFrame, QTabWidget,
-    QComboBox, QSizePolicy
+    QComboBox, QSizePolicy, QGraphicsDropShadowEffect
 )
 from PyQt5.QtCore import Qt, QSize, QTimer
-from PyQt5.QtGui import QFont, QIcon, QKeySequence
+from PyQt5.QtGui import QFont, QIcon, QKeySequence, QColor
 
 from models import Signal, Message, DBCDatabase
 from parser import DBCParser, print_database_summary
@@ -54,22 +54,23 @@ class NavButton(QPushButton):
         self.index = index
         self.setCheckable(True)
         self.setCursor(Qt.PointingHandCursor)
-        self.setFixedWidth(64)
-        self.setFixedHeight(64)
+        self.setMinimumHeight(68)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(0, 8, 0, 8)
+        layout.setContentsMargins(4, 8, 4, 8)
         layout.setSpacing(2)
 
         icon_label = QLabel(icon_text)
         icon_label.setAlignment(Qt.AlignCenter)
-        icon_label.setStyleSheet("font-size: 20px; background: transparent;")
+        icon_label.setStyleSheet("font-size: 18px;")
         layout.addWidget(icon_label)
 
         text_label = QLabel(label_text)
         text_label.setObjectName("NavLabel")
         text_label.setAlignment(Qt.AlignCenter)
-        text_label.setStyleSheet("font-size: 10px; font-weight: bold; background: transparent;")
+        text_label.setWordWrap(False)
+        text_label.setStyleSheet("font-size: 10px; font-weight: 500;")
         layout.addWidget(text_label)
 
     def set_active(self, active):
@@ -84,8 +85,8 @@ class SideNavBar(QFrame):
         super().__init__(parent)
         self.setObjectName("SideNav")
         self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(0, 20, 0, 0)
-        self.layout.setSpacing(10)
+        self.layout.setContentsMargins(4, 12, 4, 12)
+        self.layout.setSpacing(4)
         self.layout.setAlignment(Qt.AlignTop)
 
         self.buttons = []
@@ -114,8 +115,9 @@ class WorkspaceCard(QFrame):
 
         header = QFrame()
         header.setObjectName("CardHeader")
+        header.setFixedHeight(40)
         h_layout = QHBoxLayout(header)
-        h_layout.setContentsMargins(16, 12, 16, 12)
+        h_layout.setContentsMargins(16, 8, 16, 8)
         
         title_label = QLabel(title)
         title_label.setProperty("subheading", True)
@@ -123,7 +125,24 @@ class WorkspaceCard(QFrame):
         h_layout.addStretch()
         
         layout.addWidget(header)
-        layout.addWidget(widget)
+        
+        # Content wrapper
+        content_wrapper = QFrame()
+        content_wrapper.setObjectName("CardContent")
+        content_wrapper.setStyleSheet("#CardContent { border: none; background: transparent; }")
+        content_layout = QVBoxLayout(content_wrapper)
+        content_layout.setContentsMargins(4, 4, 4, 4)
+        content_layout.setSpacing(4)
+        content_layout.addWidget(widget)
+        layout.addWidget(content_wrapper, 1)
+
+        # Drop shadow for premium feel
+        shadow = QGraphicsDropShadowEffect(self)
+        shadow.setBlurRadius(15)
+        shadow.setXOffset(0)
+        shadow.setYOffset(4)
+        shadow.setColor(QColor(0, 0, 0, 15))
+        self.setGraphicsEffect(shadow)
 
 
 class MainWindow(QMainWindow):
@@ -207,7 +226,8 @@ class MainWindow(QMainWindow):
         # ── Workspace 1: Analyzer (📡 Analyze) ──
         analyzer_widget = QWidget()
         analyzer_layout = QVBoxLayout(analyzer_widget)
-        analyzer_layout.setContentsMargins(0, 0, 0, 0)
+        analyzer_layout.setContentsMargins(12, 12, 12, 12)
+        analyzer_layout.setSpacing(12)
         
         analyzer_splitter = QSplitter(Qt.Vertical)
         
@@ -253,7 +273,7 @@ class MainWindow(QMainWindow):
         # ── Workspace 2: Designer (🎨 Design) ──
         designer_widget = QWidget()
         designer_layout = QVBoxLayout(designer_widget)
-        designer_layout.setContentsMargins(0, 0, 0, 0)
+        designer_layout.setContentsMargins(12, 12, 12, 12)
 
         design_splitter = QSplitter(Qt.Horizontal)
         
@@ -280,33 +300,53 @@ class MainWindow(QMainWindow):
         designer_layout.addWidget(design_splitter)
 
         # ── Workspace 3: Preview (📄 Preview) ──
+        preview_container = QWidget()
+        preview_layout = QVBoxLayout(preview_container)
+        preview_layout.setContentsMargins(12, 12, 12, 12)
         self.dbc_preview = DBCPreviewPanel()
         preview_card = WorkspaceCard("DBC File Preview", self.dbc_preview)
+        preview_layout.addWidget(preview_card)
 
         # Add to stack
         self.workspace_stack.addWidget(analyzer_widget)
         self.workspace_stack.addWidget(designer_widget)
-        self.workspace_stack.addWidget(preview_card)
+        self.workspace_stack.addWidget(preview_container)
 
         # ── Workspace 4: Explorer (📂 Database) ──
+        explorer_container = QWidget()
+        explorer_layout = QVBoxLayout(explorer_container)
+        explorer_layout.setContentsMargins(12, 12, 12, 12)
         self.db_explorer = DatabaseExplorerPanel()
         explorer_card = WorkspaceCard("Database Explorer", self.db_explorer)
-        self.workspace_stack.addWidget(explorer_card)
+        explorer_layout.addWidget(explorer_card)
+        self.workspace_stack.addWidget(explorer_container)
 
         # ── Workspace 5: Management (🛠️ Manage) ──
+        manager_container = QWidget()
+        manager_layout = QVBoxLayout(manager_container)
+        manager_layout.setContentsMargins(12, 12, 12, 12)
         self.db_manager = DBManagerView()
         manager_card = WorkspaceCard("DBC Database Management", self.db_manager)
-        self.workspace_stack.addWidget(manager_card)
+        manager_layout.addWidget(manager_card)
+        self.workspace_stack.addWidget(manager_container)
 
         # ── Workspace 6: Guide (📚 Help) ──
+        guide_container = QWidget()
+        guide_layout = QVBoxLayout(guide_container)
+        guide_layout.setContentsMargins(12, 12, 12, 12)
         self.learning_center = DBCLearningCenter()
         guide_card = WorkspaceCard("DBC Professional Guide", self.learning_center)
-        self.workspace_stack.addWidget(guide_card)
+        guide_layout.addWidget(guide_card)
+        self.workspace_stack.addWidget(guide_container)
 
         # ── Workspace 7: Smart AI (🚀 Smart Assistant) ──
+        assistant_container = QWidget()
+        assistant_layout = QVBoxLayout(assistant_container)
+        assistant_layout.setContentsMargins(12, 12, 12, 12)
         self.assistant_panel = SmartAssistantPanel()
         assistant_card = WorkspaceCard("Smart AI Reverse Assistant", self.assistant_panel)
-        self.workspace_stack.addWidget(assistant_card)
+        assistant_layout.addWidget(assistant_card)
+        self.workspace_stack.addWidget(assistant_container)
 
         # 2. Side Navigation Bar (Left)
         self.sidebar = SideNavBar()
@@ -1731,16 +1771,15 @@ class MainWindow(QMainWindow):
 
         try:
             # 1. Parse second log
-            from parser import LogParser
-            parser = LogParser()
-            frames2 = parser.parse(path)
+            dump_parser2 = CANDumpParser()
+            raw_frames2 = dump_parser2.parse_file(path)
             
             # Sync second log IDs
             frames_by_id2 = {}
-            for _, cid, data in frames2:
-                if cid not in frames_by_id2:
-                    frames_by_id2[cid] = []
-                frames_by_id2[cid].append(data)
+            for f in raw_frames2:
+                if f.can_id not in frames_by_id2:
+                    frames_by_id2[f.can_id] = []
+                frames_by_id2[f.can_id].append(f.data)
 
             # 2. Run Comparison
             result = self.ai_suggester.compare_logs(self.frames_by_id, frames_by_id2)

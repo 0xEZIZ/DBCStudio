@@ -226,21 +226,21 @@ class SmartAssistantPanel(QWidget):
         # Run Analysis (Simulated for this script, normally uses real engine)
         # Note: In the final app, we'll parse the logs here
         try:
-            from parser import LogParser
-            lp = LogParser()
-            frames1 = lp.parse(main_path)
+            from analyzer import CANDumpParser
+            lp = CANDumpParser()
+            raw_frames1 = lp.parse_file(main_path)
             f_id1 = {}
-            for _, cid, data in frames1:
-                if cid not in f_id1: f_id1[cid] = []
-                f_id1[cid].append(data)
+            for f in raw_frames1:
+                if f.can_id not in f_id1: f_id1[f.can_id] = []
+                f_id1[f.can_id].append(f.data)
             
             f_id2 = None
             if self.ref_log_path.text():
-                frames2 = lp.parse(self.ref_log_path.text())
+                raw_frames2 = lp.parse_file(self.ref_log_path.text())
                 f_id2 = {}
-                for _, cid, data in frames2:
-                    if cid not in f_id2: f_id2[cid] = []
-                    f_id2[cid].append(data)
+                for f in raw_frames2:
+                    if f.can_id not in f_id2: f_id2[f.can_id] = []
+                    f_id2[f.can_id].append(f.data)
 
             results = self.engine.smart_analyze(f_id1, self.brand_select.currentText(), f_id2)
             

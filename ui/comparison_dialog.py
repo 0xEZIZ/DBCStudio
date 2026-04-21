@@ -108,10 +108,12 @@ class LogComparisonDialog(QDialog):
 
             # Apply background color to entire row if needed
             if color:
+                from PyQt5.QtGui import QColor as QC
+                bg = QC(color)
                 for col in range(4):
                     item = self.table.item(row, col)
-                    if item: item.setBackground(Qt.GlobalColor.transparent if not color else Qt.GlobalColor.white) # Simplified for now
-                    # We'll use status_text for clarity
+                    if item:
+                        item.setBackground(bg)
             
             self.table.setItem(row, 3, QTableWidgetItem(status_text))
 

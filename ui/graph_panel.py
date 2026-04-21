@@ -118,8 +118,8 @@ class GraphPanel(QWidget):
         self.plot_widget = None
         self.fallback_lbl = QLabel(I18N.t("graph_fallback"))
         self.fallback_lbl.setAlignment(Qt.AlignCenter)
-        fallback.setStyleSheet("color: #999; font-size: 14px; padding: 40px;")
-        layout.addWidget(fallback)
+        self.fallback_lbl.setStyleSheet("color: #999; font-size: 14px; padding: 40px;")
+        layout.addWidget(self.fallback_lbl)
 
     def _on_mouse_moved(self, pos):
         """Cross-hair mouse hereketinde ýerleşdirýär."""
