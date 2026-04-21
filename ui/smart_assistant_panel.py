@@ -9,9 +9,9 @@ from PyQt5.QtWidgets import (
     QProgressBar, QMessageBox
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-from i18n import I18N
-from ai_module import DBCKnowledgeManager, SmartAssistantEngine
-from parser import DBCParser
+from core.i18n import I18N
+from logic.ai_module import DBCKnowledgeManager, SmartAssistantEngine
+from logic.parser import DBCParser
 
 
 class RecommendationCard(QFrame):
@@ -226,7 +226,7 @@ class SmartAssistantPanel(QWidget):
         # Run Analysis (Simulated for this script, normally uses real engine)
         # Note: In the final app, we'll parse the logs here
         try:
-            from analyzer import CANDumpParser
+            from logic.analyzer import CANDumpParser
             lp = CANDumpParser()
             raw_frames1 = lp.parse_file(main_path)
             f_id1 = {}

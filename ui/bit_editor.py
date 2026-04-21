@@ -12,7 +12,7 @@ from PyQt5.QtGui import (
     QPainter, QColor, QFont, QPen, QBrush, QFontMetrics, QCursor
 )
 from ui.theme import COLORS_LIGHT, COLORS_DARK
-from i18n import I18N
+from core.i18n import I18N
 
 
 # Signal-lar üçin reňkler (8 dürli reňk)

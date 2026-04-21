@@ -20,14 +20,14 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QSize, QTimer
 from PyQt5.QtGui import QFont, QIcon, QKeySequence, QColor
 
-from models import Signal, Message, DBCDatabase
-from parser import DBCParser, print_database_summary
-from generator import DBCGenerator
-from analyzer import CANDumpParser, CANAnalyzer, CANFrame
-from encoder import CANEncoder
-from ai_module import SmartSignalDetector, AISignalSuggester, DifferentialAnalyzer, print_candidates
-from async_loader import FileLoaderWorker, AsyncFileLoader
-from i18n import I18N
+from core.models import Signal, Message, DBCDatabase
+from logic.parser import DBCParser, print_database_summary
+from logic.generator import DBCGenerator
+from logic.analyzer import CANDumpParser, CANAnalyzer, CANFrame
+from logic.encoder import CANEncoder
+from logic.ai_module import SmartSignalDetector, AISignalSuggester, DifferentialAnalyzer, print_candidates
+from core.async_loader import FileLoaderWorker, AsyncFileLoader
+from core.i18n import I18N
 
 from ui.theme import get_stylesheet, COLORS_LIGHT, COLORS_DARK
 from ui.bit_editor import BitEditorPanel
@@ -835,7 +835,7 @@ class MainWindow(QMainWindow):
     def _on_add_node(self):
         dialog = NodeEditorDialog(parent=self)
         if dialog.exec_() == QDialog.Accepted:
-            from models import Node
+            from core.models import Node
             data = dialog.get_data()
             self.database.nodes.append(Node(name=data['name'], comment=data['comment']))
             self.db_manager.refresh(self.database)
@@ -860,7 +860,7 @@ class MainWindow(QMainWindow):
     def _on_add_attr(self):
         dialog = AttributeDefinitionDialog(parent=self)
         if dialog.exec_() == QDialog.Accepted:
-            from models import AttributeDefinition
+            from core.models import AttributeDefinition
             data = dialog.get_data()
             adef = AttributeDefinition(**data)
             self.database.attribute_definitions.append(adef)
@@ -882,7 +882,7 @@ class MainWindow(QMainWindow):
     def _on_add_env(self):
         dialog = EnvVarEditorDialog(parent=self)
         if dialog.exec_() == QDialog.Accepted:
-            from models import EnvironmentVariable
+            from core.models import EnvironmentVariable
             data = dialog.get_data()
             ev = EnvironmentVariable(**data)
             self.database.environment_variables.append(ev)
@@ -903,7 +903,7 @@ class MainWindow(QMainWindow):
 
     def _on_explorer_item_selected(self, obj):
         """Explorer-de bir zat saýlananda degişli panel-e geçýär."""
-        from models import Message, Signal, Node
+        from core.models import Message, Signal, Node
         if isinstance(obj, Signal):
             # Find which message this signal belongs to
             for can_id, signals in self.defined_signals.items():
@@ -1662,7 +1662,7 @@ class MainWindow(QMainWindow):
         if not data_list:
             return
 
-        from ai_module import PatternAnalyzer
+        from logic.ai_module import PatternAnalyzer
         raw_values = PatternAnalyzer.extract_raw_values(
             data_list, signal.start_bit, signal.length, signal.byte_order
         )

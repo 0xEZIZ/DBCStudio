@@ -6,7 +6,7 @@ IXXAT-dan maglumatlary okaýar we UI/Logger-e iberýär.
 from PyQt5.QtCore import QThread, pyqtSignal
 from hardware.bus_interface import BaseBusInterface
 from hardware.loggers import DualLogger
-from logger_config import get_logger
+from core.logger_config import get_logger
 
 logger = get_logger("CANWorker")
 

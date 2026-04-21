@@ -25,7 +25,7 @@ def run_all():
     # 1. Models — Signal edge cases
     # ═══════════════════════════════════════
     print("\n═══ 1. Models: Signal Edge Cases ═══")
-    from models import Signal, Message, DBCDatabase, Node, AttributeDefinition, EnvironmentVariable
+    from core.models import Signal, Message, DBCDatabase, Node, AttributeDefinition, EnvironmentVariable
 
     # Multiplexer signal
     mux_sig = Signal(name="MuxSwitch", start_bit=0, length=4, multiplex_indicator="M")
@@ -120,7 +120,7 @@ def run_all():
     # 4. Encoder — Signed values
     # ═══════════════════════════════════════
     print("\n═══ 4. Encoder: Signed Values & Edge Cases ═══")
-    from encoder import CANEncoder
+    from logic.encoder import CANEncoder
     enc = CANEncoder()
     
     # Signed signal encode/decode
@@ -170,8 +170,8 @@ def run_all():
     # 5. Parser/Generator — Complex DBC
     # ═══════════════════════════════════════
     print("\n═══ 5. Parser/Generator: Complex DBC Round-trip ═══")
-    from parser import DBCParser
-    from generator import DBCGenerator
+    from logic.parser import DBCParser
+    from logic.generator import DBCGenerator
     
     # Build complex database
     db = DBCDatabase(version="2.5", description="Full Professional Test")
@@ -282,7 +282,7 @@ def run_all():
     # 7. Analyzer — CSV parse safety
     # ═══════════════════════════════════════
     print("\n═══ 7. Analyzer: CSV Parse Safety ═══")
-    from analyzer import CANDumpParser, CANFrame
+    from logic.analyzer import CANDumpParser, CANFrame
     dump = CANDumpParser()
     
     test("Empty row returns None", dump._parse_csv_row_auto([]) is None)
@@ -315,7 +315,7 @@ def run_all():
     # 8. AI Module — DifferentialAnalyzer
     # ═══════════════════════════════════════
     print("\n═══ 8. AI Module: DifferentialAnalyzer ═══")
-    from ai_module import DifferentialAnalyzer
+    from logic.ai_module import DifferentialAnalyzer
     
     analyzer = DifferentialAnalyzer()
     baseline = {0x100: [b'\x00\x00'] * 10}
@@ -358,7 +358,7 @@ def run_all():
     # 10. I18N — Basic validation
     # ═══════════════════════════════════════
     print("\n═══ 10. I18N: Translation System ═══")
-    from i18n import I18N
+    from core.i18n import I18N
     
     for lang in ["TKM", "ENG", "RUS"]:
         I18N.set_language(lang)

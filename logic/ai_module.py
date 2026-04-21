@@ -10,8 +10,8 @@ import json
 import os
 from typing import List, Dict, Tuple, Optional, Any
 from collections import defaultdict
-from models import Signal, Message, DBCDatabase
-from i18n import I18N
+from core.models import Signal, Message, DBCDatabase
+from core.i18n import I18N
 
 
 # ────────────────────────────────────────────────

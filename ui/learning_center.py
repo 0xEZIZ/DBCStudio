@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import (
     QComboBox, QTextBrowser, QFrame, QScrollArea
 )
 from PyQt5.QtCore import Qt
-from i18n import I18N
+from core.i18n import I18N
 
 
 class DBCLearningCenter(QWidget):

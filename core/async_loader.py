@@ -61,7 +61,7 @@ class FileLoaderWorker(QThread):
         self.status.emit("Parsing DBC file...")
         self.progress.emit(10)
 
-        from parser import DBCParser
+        from logic.parser import DBCParser
         parser = DBCParser()
 
         self.progress.emit(30)
@@ -82,7 +82,7 @@ class FileLoaderWorker(QThread):
         self.status.emit("Loading CAN log...")
         self.progress.emit(5)
 
-        from analyzer import CANDumpParser
+        from logic.analyzer import CANDumpParser
         dump_parser = CANDumpParser()
 
         self.progress.emit(10)
@@ -107,7 +107,7 @@ class FileLoaderWorker(QThread):
         self.status.emit("Loading JSON...")
         self.progress.emit(20)
 
-        from models import DBCDatabase
+        from core.models import DBCDatabase
         database = DBCDatabase.import_json(self.filepath)
 
         self.progress.emit(100)

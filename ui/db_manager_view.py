@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, pyqtSignal
 from ui.card_widgets import FlowLayout, NodeCard, AttributeCard, EnvVarCard, AddActionCard
-from i18n import I18N
+from core.i18n import I18N
 
 
 class ManagementSection(QWidget):

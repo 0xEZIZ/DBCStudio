@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import pyqtSignal, Qt
 from PyQt5.QtGui import QFont, QColor, QPainter, QBrush, QPen
-from i18n import I18N
+from core.i18n import I18N
 
 class BitHeatmapWidget(QWidget):
     """

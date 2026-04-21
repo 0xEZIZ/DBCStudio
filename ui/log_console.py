@@ -6,7 +6,7 @@ Programmanyň logs-laryny UI-da görkezýär.
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPlainTextEdit, QLabel, QHBoxLayout, QPushButton
 from PyQt5.QtCore import Qt, pyqtSignal, QObject
 from PyQt5.QtGui import QFont, QColor
-from i18n import I18N
+from core.i18n import I18N
 import logging
 
 class LogSignalEmitter(QObject):

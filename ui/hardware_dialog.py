@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
     QFormLayout, QDialogButtonBox
 )
 from PyQt5.QtCore import Qt
-from i18n import I18N
+from core.i18n import I18N
 
 class HardwareSetupDialog(QDialog):
     """

@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import (
     QCheckBox, QComboBox, QSizePolicy
 )
 from PyQt5.QtCore import Qt, pyqtSignal
-from i18n import I18N
+from core.i18n import I18N
 
 # pyqtgraph import - eger ýok bolsa fallback
 try:

@@ -5,7 +5,7 @@ Intel (little-endian) we Motorola (big-endian) byte order goldawy bar.
 """
 
 from typing import Dict, List, Optional, Tuple
-from models import Signal, Message
+from core.models import Signal, Message
 
 
 class CANEncoder:

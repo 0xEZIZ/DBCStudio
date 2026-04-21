@@ -7,7 +7,7 @@ import csv
 import time
 import os
 from datetime import datetime
-from analyzer import CANFrame
+from logic.analyzer import CANFrame
 
 class DualLogger:
     """

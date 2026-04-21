@@ -18,7 +18,7 @@ import sys
 import json
 import os
 import logging
-from logger_config import setup_logging, get_logger
+from core.logger_config import setup_logging, get_logger
 
 # Windows konsol encoding düzediş
 if sys.platform == "win32":
@@ -28,10 +28,10 @@ if sys.platform == "win32":
 from ui.video_panel import VideoPlaybackPanel
 from ui.log_console import LogConsole
 from ui.hardware_dialog import HardwareSetupDialog
-from models import DBCDatabase
-from parser import DBCParser, parse_dbc, print_database_summary
-from generator import DBCGenerator, generate_dbc, generate_dbc_from_json
-from analyzer import CANAnalyzer, analyze_dump
+from core.models import DBCDatabase
+from logic.parser import DBCParser, parse_dbc, print_database_summary
+from logic.generator import DBCGenerator, generate_dbc, generate_dbc_from_json
+from logic.analyzer import CANAnalyzer, analyze_dump
 
 
 def cmd_parse(args):

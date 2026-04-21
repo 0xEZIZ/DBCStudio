@@ -9,7 +9,7 @@ app = QApplication(sys.argv)
 
 try:
     from ui.data_table import DatabaseExplorerPanel, CANDataTable
-    from models import DBCDatabase, Node, Message, Signal
+    from core.models import DBCDatabase, Node, Message, Signal
     from ui.main_window import MainWindow
 
     # 1. Test Explorer Populate

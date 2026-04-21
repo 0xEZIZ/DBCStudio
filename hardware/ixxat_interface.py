@@ -6,9 +6,9 @@ python-can kitaphanasyny ulanyp IXXAT adapterleri bilen işleýär.
 import can
 import time
 from typing import Optional
-from logger_config import get_logger
+from core.logger_config import get_logger
 from hardware.bus_interface import BaseBusInterface
-from analyzer import CANFrame
+from logic.analyzer import CANFrame
 
 logger = get_logger("IXXAT")
 

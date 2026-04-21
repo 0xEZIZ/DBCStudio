@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtCore import Qt, QUrl, pyqtSignal
-from i18n import I18N
+from core.i18n import I18N
 
 
 class VideoPlaybackPanel(QWidget):

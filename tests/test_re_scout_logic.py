@@ -1,5 +1,5 @@
 # test_re_scout_logic.py
-from ai_module import DifferentialAnalyzer
+from logic.ai_module import DifferentialAnalyzer
 
 def test_logic():
     analyzer = DifferentialAnalyzer()

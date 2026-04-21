@@ -1,7 +1,7 @@
 """Roundtrip verification test for all fixes."""
-from models import Signal, Message, DBCDatabase, Node
-from parser import DBCParser
-from generator import DBCGenerator
+from core.models import Signal, Message, DBCDatabase, Node
+from logic.parser import DBCParser
+from logic.generator import DBCGenerator
 
 # 1. Build a test database with edge cases
 db = DBCDatabase(version='1.0', description='Test DB')
@@ -41,7 +41,7 @@ assert db2.messages[0].signals[1].byte_order == 'big_endian'
 print('\n[PASS] Roundtrip parse/generate')
 
 # 5. Test encoder roundtrip
-from encoder import CANEncoder
+from logic.encoder import CANEncoder
 enc = CANEncoder()
 encoded = enc.encode_message(msg1, {'Speed': 100.0, 'RPM': 3000})
 decoded = enc.decode_message(msg1, encoded)
@@ -63,7 +63,7 @@ assert gen._format_number(1.5) == '1.5'
 print('[PASS] format_number')
 
 # 7. Test CSV parser safety
-from analyzer import CANDumpParser
+from logic.analyzer import CANDumpParser
 dump = CANDumpParser()
 # Should not crash on bad CSV rows
 frame = dump._parse_csv_row_auto(['', '', ''])

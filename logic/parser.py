@@ -7,7 +7,7 @@ BA_, EV_, SIG_VALTYPE_, SG_MUL_VAL_, multiplexed signals.
 
 import re
 from typing import List, Optional, Dict, Any
-from models import (
+from core.models import (
     Signal, Message, DBCDatabase,
     Node, AttributeDefinition, EnvironmentVariable
 )

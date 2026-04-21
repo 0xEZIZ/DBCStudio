@@ -7,7 +7,7 @@ VAL_, SIG_VALTYPE_, EV_, SG_MUL_VAL_, multiplexed signals.
 
 import json
 from typing import List, Optional
-from models import Signal, Message, DBCDatabase
+from core.models import Signal, Message, DBCDatabase
 
 
 class DBCGenerator:

@@ -5,7 +5,7 @@ Hardware-den garaşsyz CAN aragatnaşygyny dolandyrýar.
 
 from abc import ABC, abstractmethod
 from typing import Optional, List
-from analyzer import CANFrame
+from logic.analyzer import CANFrame
 
 class BaseBusInterface(ABC):
     """

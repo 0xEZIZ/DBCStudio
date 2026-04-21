@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, pyqtSignal, QAbstractTableModel, QModelIndex, QSortFilterProxyModel
 from PyQt5.QtGui import QColor, QFont, QIcon
-from i18n import I18N
+from core.i18n import I18N
 
 
 class CANTableModel(QAbstractTableModel):

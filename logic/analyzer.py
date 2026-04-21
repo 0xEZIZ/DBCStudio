@@ -8,9 +8,9 @@ import re
 import csv
 from typing import List, Dict, Tuple, Optional
 from collections import defaultdict
-from models import Signal, Message, DBCDatabase
-from generator import DBCGenerator
-from encoder import CANEncoder
+from core.models import Signal, Message, DBCDatabase
+from logic.generator import DBCGenerator
+from logic.encoder import CANEncoder
 
 
 class CANFrame:

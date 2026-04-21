@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="readmee.png" width="300" height="300" alt="CAN DBC Studio Logo">
+  <img src="assets/readmee.png" width="200" height="200" alt="CAN DBC Studio Logo">
   
   # 🚀 DBC Studio Pro | CAN Bus Reverse Engineering Suite
   
