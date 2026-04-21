@@ -1,7 +1,7 @@
 <div align="center">
   <img src="assets/readmee.png" width="400" height="400" alt="CAN DBC Studio Logo">
   
-  # 🚀 DBC Studio Pro | CAN Bus Reverse Engineering Suite
+  # 🚀 DBC Studio  | CAN Bus Reverse Engineering Suite
   
   **The Next-Generation AI-Powered CAN Bus Analyzer & DBC Database Generator**
   
@@ -69,8 +69,8 @@ Whether you're developing IoT vehicle tracking, modifying heavy machinery, or ha
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YourUsername/DBC-Studio-Pro.git
-   cd DBC-Studio-Pro
+   git clone https://github.com/0xEZIZ/DBCStudio.git
+   cd DBCStudio
    ```
 
 2. **Create a virtual environment:**
@@ -107,8 +107,8 @@ The codebase is built cleanly with true separation of concerns, heavily audited 
 **DBC Studio Pro** is currently proprietary software. 
 If you are an Automotive Firm, Hardware Engineering company, or Security Research Team looking to purchase a commercial license, integrate this into your workflow, or request custom ECU-specific features:
 
-📫 **Contact the Developer:** `your.email@example.com` <br>
-🌍 **Portfolio / Website:** `https://yourdomain.com`
+📫 **Contact the Developer:** `ezizysmailov0403@gmail.com` <br>
+🌍 **Phone number:** `+99362430603`
 
 ---
 
