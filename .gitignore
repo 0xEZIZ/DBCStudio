@@ -1,1 +1,7 @@
 .aider*
+build/
+dist/
+venv/
+__pycache__/
+*.pyc
+*.spec
